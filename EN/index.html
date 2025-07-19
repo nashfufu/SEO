@@ -155,10 +155,21 @@
     </div>
     <script>
       document.getElementById('contact-us-btn').addEventListener('click', function () {
-        window.open('https://wa.me/13105551234', '_blank');
+        // Google Ads 轉換事件觸發
+        gtag('event', 'conversion', {
+            'send_to': 'AW-11479306375/7givCKPT8vMaEIeh4eEq',
+            'value': 10.0,
+            'currency': 'TWD'
+        });
+  
+        // 延遲 200 毫秒再跳轉，確保事件送出
+        setTimeout(function () {
+          window.open('https://wa.me/13105551234', '_blank');
+        }, 200);
       });
     </script>
   </section>
+
 </div>
 
 <footer>
