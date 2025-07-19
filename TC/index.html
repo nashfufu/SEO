@@ -225,12 +225,23 @@
       </p>
       <button id="contact-us-btn" class="btn cta-btn">聯絡我們</button>
     </div>
-    <script type="text/javascript">
+    <script>
       document.getElementById('contact-us-btn').addEventListener('click', function () {
-        window.open('https://line.me/ti/p/mJaxGT7we-', '_blank');
+        // 觸發 Google Ads 轉換事件
+        gtag('event', 'conversion', {
+          'send_to': 'AW-11479306375/7givCKPT8vMaEIeh4eEq',
+          'value': 10.0,
+          'currency': 'TWD'
+        });
+  
+        // 延遲跳轉，確保事件送出
+        setTimeout(function () {
+          window.open('https://line.me/ti/p/mJaxGT7we-', '_blank');
+        }, 200);
       });
     </script>
   </section>
+
 </div>
 
 <footer>
