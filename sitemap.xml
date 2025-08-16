@@ -2,7 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
-  <!-- 中文頁（繁體 / 簡體都指向 /TC/） -->
   <url>
     <loc>https://seo-22p.pages.dev/TC/</loc>
     <lastmod>2025-08-16</lastmod>
@@ -13,7 +12,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://seo-22p.pages.dev/EN/"/>
   </url>
 
-  <!-- 英文頁（國際訪客） -->
   <url>
     <loc>https://seo-22p.pages.dev/EN/</loc>
     <lastmod>2025-08-16</lastmod>
