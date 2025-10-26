@@ -27,49 +27,19 @@
       background: linear-gradient(to right, #f0f4f7, #ffffff);
       color: #333;
     }
-    header {
-      padding: 80px 20px;
-      text-align: center;
-    }
-    header h1 {
-      font-size: 2.5rem;
-      font-weight: 700;
-    }
-    header p {
-      font-size: 1.25rem;
-      margin-top: 10px;
-      color: #555;
-    }
+    header { padding: 80px 20px; text-align: center; }
+    header h1 { font-size: 2.5rem; font-weight: 700; }
+    header p { font-size: 1.25rem; margin-top: 10px; color: #555; }
     .section-title {
-      font-size: 1.75rem;
-      margin-top: 40px;
-      font-weight: 600;
-      border-left: 4px solid #00bcd4;
-      padding-left: 10px;
+      font-size: 1.75rem; margin-top: 40px; font-weight: 600;
+      border-left: 4px solid #00bcd4; padding-left: 10px;
     }
     .highlight-box {
-      background-color: #e0f7fa;
-      padding: 20px;
-      border-radius: 12px;
-      margin-top: 20px;
+      background-color: #e0f7fa; padding: 20px; border-radius: 12px; margin-top: 20px;
     }
-    .cta-btn {
-      background-color: #00796b;
-      border: none;
-      padding: 12px 24px;
-      color: white;
-      border-radius: 8px;
-    }
-    .cta-btn:hover {
-      background-color: #004d40;
-    }
-    footer {
-      background-color: #eee;
-      color: #555;
-      padding: 20px 0;
-      text-align: center;
-      font-size: 0.9rem;
-    }
+    .cta-btn { background-color: #00796b; border: none; padding: 12px 24px; color: white; border-radius: 8px; }
+    .cta-btn:hover { background-color: #004d40; }
+    footer { background-color: #eee; color: #555; padding: 20px 0; text-align: center; font-size: 0.9rem; }
   </style>
 
   <!-- Google Analytics + Google Ads gtag 初始化 -->
@@ -78,12 +48,8 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-  
-    // GA4 追蹤代碼
-    gtag('config', 'G-80FSS1GQSR');
-  
-    // Google Ads 轉換與再行銷啟用
-    gtag('config', 'AW-11479306375');
+    gtag('config', 'G-80FSS1GQSR');      // GA4
+    gtag('config', 'AW-11479306375');    // Google Ads
   </script>
 
 </head>
@@ -96,7 +62,8 @@
   <h1>AEO & SEO Tech Support | AI Search + ROAS Efficiency</h1>
   <p>Dynamic feed integration, pixel tracking & ad retargeting to maximize conversions</p>
   <div style="margin-top: 20px;">
-    <a href="https://wa.me/13105551234" target="_blank" class="btn cta-btn">📲 Message Us on WhatsApp</a>
+    <!-- 替換：改為開啟 Tawk 聊天，不開新分頁；文案保留 -->
+    <a href="#" class="btn cta-btn" onclick="return openChat(event)">📲 Message Us on WhatsApp</a>
   </div>
 </header>
 
@@ -112,7 +79,6 @@
     </iframe>
   </div>
 </div>
-
 
 <div class="container">
   <section>
@@ -184,36 +150,24 @@
     <h2 class="section-title">Get In Touch｜Boost Your AEO, SEO, and ROAS</h2>
     <div style="text-align: center; margin-top: 30px;">
       <p>Contact Us｜WhatsApp</p>
-      <p>📱 <a href="https://wa.me/13105551234" target="_blank">Message Us on WhatsApp</a></p>
+      <!-- 替換：改為開啟 Tawk 聊天，不開新分頁；文案保留 -->
+      <p>📱 <a href="#" onclick="return openChat(event)">Message Us on WhatsApp</a></p>
+      <!-- 原「Contact Us Now」改為開啟聊天並送轉換 -->
       <button id="contact-us-btn" class="btn cta-btn">Contact Us Now</button>
     </div>
     <script>
+      // 點「Contact Us Now」：先送轉換，再開聊天（不跳新頁）
       document.getElementById('contact-us-btn').addEventListener('click', function () {
-        // Google Ads 轉換事件觸發
-        gtag('event', 'conversion', {
-            'send_to': 'AW-11479306375/UoEnCLevwYkbEIeh4eEq',
-            'value': 1200.0,
-            'currency': 'TWD'
-        });
-  
-        // 延遲 200 毫秒再跳轉，確保事件送出
-        setTimeout(function () {
-          window.open('https://wa.me/13105551234', '_blank');
-        }, 200);
-      });
-    </script>
-    <script>
-      document.querySelectorAll('a[href*="wa.me"]').forEach(function(el) {
-        el.addEventListener('click', function () {
+        try {
           gtag('event', 'conversion', {
             'send_to': 'AW-11479306375/UoEnCLevwYkbEIeh4eEq',
             'value': 1200.0,
             'currency': 'TWD'
           });
-        });
+        } catch(_) {}
+        if (typeof openChat === 'function') openChat();
       });
     </script>
-
   </section>
 
 </div>
@@ -222,15 +176,58 @@
   <p>&copy; 2025 AEO & SEO Tech Team｜Speed Optimization, Structured Data, Dynamic Feed, Ads & ROAS Optimization</p>
 </footer>
 
+<!-- 右下角浮動按鈕：改為開啟聊天 -->
 <div style="position: fixed; bottom: 20px; right: 20px; z-index: 999;">
-  <a href="https://wa.me/13105551234" target="_blank" class="btn cta-btn">💬 Chat Now</a>
+  <a href="#" class="btn cta-btn" onclick="return openChat(event)">💬 Chat Now</a>
 </div>
+
+<!-- ====== Tawk.to（共用 widget；自動打標籤＆屬性；支援 CTA 喚起） ====== -->
+<script>
+  // 喚起聊天（避免未載入時失敗）
+  function openChat(e){
+    if (e && e.preventDefault) e.preventDefault();
+    window.__openChatQueue = true;
+    if (window.Tawk_API?.showWidget) Tawk_API.showWidget();
+    if (window.Tawk_API?.maximize)  Tawk_API.maximize();
+    window.__openChatQueue = false;
+    return false;
+  }
+
+  var Tawk_API = window.Tawk_API || {}, Tawk_LoadStart = new Date();
+
+  // 載入完成：加標籤與屬性，並處理使用者在載入前已點 CTA 的情況
+  Tawk_API.onLoad = function () {
+    try {
+      if (Tawk_API.addTags) Tawk_API.addTags(['site:AEO','lang:EN','campaign:SEO-EN']);
+      var q = new URLSearchParams(location.search);
+      var attrs = {
+        source: 'AEO_EN_landing',
+        path: location.pathname + location.search,
+        utm_source: q.get('utm_source') || '',
+        utm_medium: q.get('utm_medium') || '',
+        utm_campaign: q.get('utm_campaign') || ''
+      };
+      if (Tawk_API.setAttributes) Tawk_API.setAttributes(attrs, function(err){});
+    } catch(_) {}
+
+    if (window.__openChatQueue) {
+      if (Tawk_API.showWidget) Tawk_API.showWidget();
+      if (Tawk_API.maximize)  Tawk_API.maximize();
+      window.__openChatQueue = false;
+    }
+  };
+
+  // 載入共用 widget（與 Zepper 同一組）
+  (function(){
+    var s1=document.createElement("script"), s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/68fe8354a434b3194c3c9929/1j8h320r3';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+  })();
+</script>
+<!-- ====== /Tawk.to ====== -->
 
 </body>
 </html>
-
-
-
-
-
-
