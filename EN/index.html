@@ -40,6 +40,7 @@
     .cta-btn { background-color: #00796b; border: none; padding: 12px 24px; color: white; border-radius: 8px; }
     .cta-btn:hover { background-color: #004d40; }
     footer { background-color: #eee; color: #555; padding: 20px 0; text-align: center; font-size: 0.9rem; }
+    .legal-note { font-size: 11px; color: #6b7280; opacity: .85; margin-top: 6px; }
   </style>
 
   <!-- Google Analytics + Google Ads gtag 初始化 -->
@@ -52,6 +53,19 @@
     gtag('config', 'AW-11479306375');    // Google Ads
   </script>
 
+  <!-- Minimal JSON-LD (adds legal entity for verification; invisible to users) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"BoostAEO",
+    "legalName":"佛舌工作社",
+    "alternateName":"FoShe Studio",
+    "url":"https://seo-22p.pages.dev/",
+    "logo":"https://seo-22p.pages.dev/logo.png",
+    "sameAs":[]
+  }
+  </script>
 </head>
 <body>
 
@@ -174,6 +188,7 @@
 
 <footer>
   <p>&copy; 2025 AEO & SEO Tech Team｜Speed Optimization, Structured Data, Dynamic Feed, Ads & ROAS Optimization</p>
+  <p class="legal-note">Operated by: 佛舌工作社（FoShe Studio）</p>
 </footer>
 
 <!-- 右下角浮動按鈕：改為開啟聊天 -->
