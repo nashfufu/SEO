@@ -51,6 +51,13 @@
     gtag('js', new Date());
     gtag('config', 'G-80FSS1GQSR');      // GA4
     gtag('config', 'AW-11479306375');    // Google Ads
+
+    // GA4 事件工具，之後所有自訂事件都用這個送
+    function sendEvt(name, params) {
+      try {
+        gtag('event', name, params || {});
+      } catch (e) {}
+    }
   </script>
 
   <!-- Minimal JSON-LD (adds legal entity for verification; invisible to users) -->
@@ -76,14 +83,14 @@
   <h1>AEO & SEO Tech Support | AI Search + ROAS Efficiency</h1>
   <p>Dynamic feed integration, pixel tracking & ad retargeting to maximize conversions</p>
   <div style="margin-top: 20px;">
-    <!-- 替換：改為開啟 Tawk 聊天，不開新分頁；文案保留 -->
-    <a href="#" class="btn cta-btn" onclick="return openChat(event)">📲 Message Us on WhatsApp</a>
+    <!-- CTA：標記 contact 位置，並開啟聊天 -->
+    <a href="#" class="btn cta-btn" data-contact-loc="header_whatsapp" onclick="return openChat(event)">📲 Message Us on WhatsApp</a>
   </div>
 </header>
 
 <div class="container" style="margin-top: 40px; text-align: center;">
   <h2 class="section-title">Video Introduction｜What is AEO (Answer Engine Optimization)?</h2>
-  <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%;margin-top:20px;">
+  <div data-video="aeo-intro" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%;margin-top:20px;">
     <iframe
       src="https://www.youtube.com/embed/6uMf8QibEDs?playlist=6uMf8QibEDs&loop=1"
       frameborder="0"
@@ -156,7 +163,7 @@
     - 📺 <strong><a href="https://danmu-info.neocities.org/" target="_blank">Danmu Streaming System</a></strong><br>
     - 💬 <strong><a href="https://touchme.vip/" target="_blank">TouchMe Dating App</a></strong><br>
     - 🧘 <strong><a href="https://one-bsf.pages.dev/" target="_blank">ONE Anonymous Mind Community</a></strong><br>
-    - 🙏 <strong><a href="https://dessert365shop.com/px/wish" target="_blank">WISH Prayer Portal</a></strong></p>
+    - 🙏 <strong><a href="https://dessert365shop.com/px/wish" target="_blank">WISH Prayer Portal</a></strong><br>
     - 🌿 <strong><a href="https://stevejan168.pages.dev/siteenglish" target="_blank">Spiritual Qigong Course × Chien Wei-Ching</a></strong></p>
   </section>
 
@@ -164,14 +171,21 @@
     <h2 class="section-title">Get In Touch｜Boost Your AEO, SEO, and ROAS</h2>
     <div style="text-align: center; margin-top: 30px;">
       <p>Contact Us｜WhatsApp</p>
-      <!-- 替換：改為開啟 Tawk 聊天，不開新分頁；文案保留 -->
-      <p>📱 <a href="#" onclick="return openChat(event)">Message Us on WhatsApp</a></p>
-      <!-- 原「Contact Us Now」改為開啟聊天並送轉換 -->
+      <!-- CTA：一樣開聊天，多加 GA 事件 -->
+      <p>📱 <a href="#" data-contact-loc="contact_whatsapp" onclick="return openChat(event)">Message Us on WhatsApp</a></p>
+      <!-- Contact Us Now：送 GA4 contact_us_click + Google Ads conversion + 開聊天 -->
       <button id="contact-us-btn" class="btn cta-btn">Contact Us Now</button>
     </div>
     <script>
-      // 點「Contact Us Now」：先送轉換，再開聊天（不跳新頁）
+      // 點「Contact Us Now」：先送 GA4 事件，再送 Ads conversion，最後開聊天
       document.getElementById('contact-us-btn').addEventListener('click', function () {
+        // GA4：主要轉換事件
+        sendEvt('contact_us_click', {
+          location: 'contact_us_btn',
+          page: location.pathname + location.search
+        });
+
+        // Google Ads conversion
         try {
           gtag('event', 'conversion', {
             'send_to': 'AW-11479306375/UoEnCLevwYkbEIeh4eEq',
@@ -179,6 +193,8 @@
             'currency': 'TWD'
           });
         } catch(_) {}
+
+        // 開啟聊天視窗
         if (typeof openChat === 'function') openChat();
       });
     </script>
@@ -193,7 +209,7 @@
 
 <!-- 右下角浮動按鈕：改為開啟聊天 -->
 <div style="position: fixed; bottom: 20px; right: 20px; z-index: 999;">
-  <a href="#" class="btn cta-btn" onclick="return openChat(event)">💬 Chat Now</a>
+  <a href="#" class="btn cta-btn" data-contact-loc="floating_chat" onclick="return openChat(event)">💬 Chat Now</a>
 </div>
 
 <!-- ====== Tawk.to（共用 widget；自動打標籤＆屬性；支援 CTA 喚起） ====== -->
@@ -202,13 +218,33 @@
   function openChat(e){
     if (e && e.preventDefault) e.preventDefault();
     window.__openChatQueue = true;
-    if (window.Tawk_API?.showWidget) Tawk_API.showWidget();
-    if (window.Tawk_API?.maximize)  Tawk_API.maximize();
+    if (window.Tawk_API && Tawk_API.showWidget) Tawk_API.showWidget();
+    if (window.Tawk_API && Tawk_API.maximize)  Tawk_API.maximize();
     window.__openChatQueue = false;
     return false;
   }
 
   var Tawk_API = window.Tawk_API || {}, Tawk_LoadStart = new Date();
+
+  // 聊天開始 / 最大化 → 當成高意圖事件
+  Tawk_API.onChatStarted = function () {
+    if (typeof sendEvt === 'function') {
+      sendEvt('chat_open', {
+        source: 'tawk_widget',
+        status: 'started',
+        page: location.pathname + location.search
+      });
+    }
+  };
+  Tawk_API.onChatMaximized = function () {
+    if (typeof sendEvt === 'function') {
+      sendEvt('chat_open', {
+        source: 'tawk_widget',
+        status: 'maximized',
+        page: location.pathname + location.search
+      });
+    }
+  };
 
   // 載入完成：加標籤與屬性，並處理使用者在載入前已點 CTA 的情況
   Tawk_API.onLoad = function () {
@@ -243,6 +279,65 @@
   })();
 </script>
 <!-- ====== /Tawk.to ====== -->
+
+<!-- ====== GA4 額外事件：scroll depth、outbound、video ====== -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // 1) 所有 data-contact-loc 的 CTA → contact_us_click
+    var contactCtas = document.querySelectorAll('[data-contact-loc]');
+    contactCtas.forEach(function (el) {
+      el.addEventListener('click', function () {
+        var loc = el.getAttribute('data-contact-loc') || 'unknown';
+        sendEvt('contact_us_click', {
+          location: loc,
+          page: location.pathname + location.search
+        });
+      });
+    });
+
+    // 2) scroll depth 90%
+    var scrollTracked = false;
+    window.addEventListener('scroll', function () {
+      if (scrollTracked) return;
+      var doc = document.documentElement;
+      var scrolled = (window.scrollY + window.innerHeight) / doc.scrollHeight;
+      if (scrolled >= 0.9) {
+        scrollTracked = true;
+        sendEvt('scroll_depth', {
+          percent: 90,
+          page: location.pathname + location.search
+        });
+      }
+    });
+
+    // 3) outbound links（案例連結）
+    var outboundLinks = document.querySelectorAll('a[target="_blank"]');
+    outboundLinks.forEach(function (a) {
+      a.addEventListener('click', function () {
+        sendEvt('outbound_click', {
+          url: a.href,
+          page: location.pathname + location.search
+        });
+      });
+    });
+
+    // 4) 簡易 video_engaged：點到影片區就記一次
+    var videoWrap = document.querySelector('[data-video="aeo-intro"]');
+    if (videoWrap) {
+      var videoSent = false;
+      videoWrap.addEventListener('click', function () {
+        if (videoSent) return;
+        videoSent = true;
+        sendEvt('video_engaged', {
+          label: 'aeo_intro',
+          method: 'click',
+          page: location.pathname + location.search
+        });
+      });
+    }
+  });
+</script>
+<!-- ====== /GA4 extra events ====== -->
 
 </body>
 </html>
