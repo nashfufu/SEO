@@ -9,7 +9,8 @@
   <link rel="canonical" href="https://seo-22p.pages.dev/TC/">
   <link rel="alternate" hreflang="zh-Hant" href="https://seo-22p.pages.dev/TC/">
   <link rel="alternate" hreflang="en" href="https://seo-22p.pages.dev/EN/">
-  <!-- Open Graph metadata for LinkedIn and other platforms -->
+
+  <!-- Open Graph metadata -->
   <meta property="og:title" content="SEO 關鍵字排名優化｜網站速度加速、動態饋給與 ROAS 提升方案 by BoostAEO" />
   <meta property="og:description" content="提供 SEO 技術支援，專注提升網站速度、關鍵字排名、動態饋給、產品廣告導流、像素追蹤與再行銷，助攻 ROAS 倍增。" />
   <meta property="og:url" content="https://seo-22p.pages.dev/TC/" />
@@ -37,7 +38,7 @@
     .legal-note { font-size: 11px; color: #6b7280; opacity: .85; margin-top: 6px; }
   </style>
 
-  <!-- JSON-LD：含法定名稱（低改動，直接加在既有結構裡） -->
+  <!-- JSON-LD：組織資訊 -->
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -66,6 +67,7 @@
     }
   </script>
 
+  <!-- JSON-LD：FAQ -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -107,6 +109,13 @@
     gtag('js', new Date());
     gtag('config', 'G-80FSS1GQSR');
     gtag('config', 'AW-11479306375');
+
+    // 共用事件函式
+    function sendEvt(name, params) {
+      try {
+        gtag('event', name, params || {});
+      } catch (e) {}
+    }
   </script>
 </head>
 <body>
@@ -118,13 +127,19 @@
   <h1>AEO & SEO 技術支援｜強化AI搜尋與廣告效率ROAS</h1>
   <p>動態饋給、像素追蹤與產品廣告再行銷，助攻轉換成效最大化</p>
   <div style="margin-top: 20px;">
-    <a href="https://line.me/ti/p/mJaxGT7we-" target="_blank" class="btn cta-btn">📲 立即加 LINE 諮詢</a>
+    <!-- header CTA：標記 contact 位置 -->
+    <a href="https://line.me/ti/p/mJaxGT7we-" target="_blank"
+       class="btn cta-btn"
+       data-contact-loc="header_line">
+       📲 立即加 LINE 諮詢
+    </a>
   </div>
 </header>
 
 <div class="container" style="margin-top: 40px; text-align: center;">
   <h2 class="section-title">影片介紹｜AEO 是什麼？</h2>
-  <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%;margin-top:20px;">
+  <div data-video="aeo-intro"
+       style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%;margin-top:20px;">
     <iframe
       src="https://www.youtube.com/embed/3ODCR-zLJGY?playlist=3ODCR-zLJGY&loop=1"
       frameborder="0"
@@ -136,28 +151,28 @@
 </div>
 
 <div class="container">
-    <section>
-      <h2 class="section-title">AEO 是什麼？為何現在就該啟動</h2>
-      <div class="highlight-box">
-        <p>
-          在 SEO（搜尋引擎最佳化）之後，AEO（Answer Engine Optimization）正悄悄成為下一個流量風口。
-          AEO ≠ 傳統關鍵字堆疊，而是針對 Google、ChatGPT、Gemini 等 AI 問答引擎設計內容，
-          <strong>讓你的品牌或產品能被 AI 直接「選中、引用、推薦」給用戶。</strong>
-        </p>
-        <p>
-          如果你的網站內容還只是寫給「人類讀者」看的，那你很可能正在錯過 AI 時代的曝光紅利。
-        </p>
-        <ul>
-          <li>🔹 FAQ Schema 與結構化資料</li>
-          <li>🔹 語意清楚、好摘要的段落</li>
-          <li>🔹 針對特定提問做明確回答（Featured Snippet）</li>
-          <li>🔹 多語系與多模態支援（影片、圖片 alt 描述等）</li>
-        </ul>
-        <p>
-          在 AI 成為主流資訊入口的當下，你是否準備好讓 AI 理解並選擇你？
-        </p>
-      </div>
-    </section>
+  <section>
+    <h2 class="section-title">AEO 是什麼？為何現在就該啟動</h2>
+    <div class="highlight-box">
+      <p>
+        在 SEO（搜尋引擎最佳化）之後，AEO（Answer Engine Optimization）正悄悄成為下一個流量風口。
+        AEO ≠ 傳統關鍵字堆疊，而是針對 Google、ChatGPT、Gemini 等 AI 問答引擎設計內容，
+        <strong>讓你的品牌或產品能被 AI 直接「選中、引用、推薦」給用戶。</strong>
+      </p>
+      <p>
+        如果你的網站內容還只是寫給「人類讀者」看的，那你很可能正在錯過 AI 時代的曝光紅利。
+      </p>
+      <ul>
+        <li>🔹 FAQ Schema 與結構化資料</li>
+        <li>🔹 語意清楚、好摘要的段落</li>
+        <li>🔹 針對特定提問做明確回答（Featured Snippet）</li>
+        <li>🔹 多語系與多模態支援（影片、圖片 alt 描述等）</li>
+      </ul>
+      <p>
+        在 AI 成為主流資訊入口的當下，你是否準備好讓 AI 理解並選擇你？
+      </p>
+    </div>
+  </section>
 </div>  
 
 <div class="container">
@@ -196,7 +211,7 @@
     - 📺 <strong><a href="https://danmu-info.neocities.org/" target="_blank">彈幕串流影片系統</a></strong><br>
     - 💬 <strong><a href="https://touchme.vip/" target="_blank">TouchMe 交友平台</a></strong><br>
     - 🧘 <strong><a href="https://one-bsf.pages.dev/" target="_blank">ONE 匿名心靈分享社群</a></strong><br>
-    - 🙏 <strong><a href="https://dessert365shop.com/px/wish" target="_blank">WISH 線上祈禱系統</a></strong></p>
+    - 🙏 <strong><a href="https://dessert365shop.com/px/wish" target="_blank">WISH 線上祈禱系統</a></strong><br>
     - 🌿 <strong><a href="https://stevejan168.pages.dev/sitechinese" target="_blank">心靈氣功課程X簡瑋慶</a></strong></p>
   </section>
 
@@ -205,33 +220,13 @@
     <div style="text-align: center; margin-top: 30px;">
       <p>聯絡方式｜LINE</p>
       <p>
-        📱 <a href="https://line.me/ti/p/mJaxGT7we-" target="_blank">點我加 LINE</a><br>
+        📱 <a href="https://line.me/ti/p/mJaxGT7we-" target="_blank"
+              data-contact-loc="contact_line">
+              點我加 LINE
+        </a><br>
       </p>
       <button id="contact-us-btn" class="btn cta-btn">聯絡我們</button>
     </div>
-    <script>
-      document.getElementById('contact-us-btn').addEventListener('click', function () {
-        gtag('event', 'conversion', {
-          'send_to': 'AW-11479306375/7givCKPT8vMaEIeh4eEq',
-          'value': 1200.0,
-          'currency': 'TWD'
-        });
-        setTimeout(function () {
-          window.open('https://line.me/ti/p/mJaxGT7we-', '_blank');
-        }, 200);
-      });
-    </script>
-    <script>
-      document.querySelectorAll('a[href*="line.me"]').forEach(function(el) {
-        el.addEventListener('click', function () {
-          gtag('event', 'conversion', {
-            'send_to': 'AW-11479306375/7givCKPT8vMaEIeh4eEq',
-            'value': 1200.0,
-            'currency': 'TWD'
-          });
-        });
-      });
-    </script>
   </section>
 </div>
 
@@ -240,9 +235,113 @@
   <p class="legal-note">營運單位：佛舌工作社（FoShe Studio）</p>
 </footer>
 
+<!-- 右下角浮動 LINE CTA -->
 <div style="position: fixed; bottom: 20px; right: 20px; z-index: 999;">
-  <a href="https://line.me/ti/p/mJaxGT7we-" target="_blank" class="btn cta-btn">📩 加 LINE 諮詢</a>
+  <a href="https://line.me/ti/p/mJaxGT7we-" target="_blank"
+     class="btn cta-btn"
+     data-contact-loc="floating_line">
+     📩 加 LINE 諮詢
+  </a>
 </div>
-  
+
+<!-- GA4 自訂事件（contact / scroll / outbound / video / conversion） -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var pagePath = location.pathname + location.search;
+
+    /* 1) contact_us_click：所有帶 data-contact-loc 的 CTA */
+    var contactCtas = document.querySelectorAll('[data-contact-loc]');
+    contactCtas.forEach(function (el) {
+      el.addEventListener('click', function () {
+        var loc = el.getAttribute('data-contact-loc') || 'unknown';
+        sendEvt('contact_us_click', {
+          location: loc,
+          channel: 'LINE',
+          page: pagePath
+        });
+      });
+    });
+
+    /* 2) 聯絡我們按鈕：送 contact_us_click + Ads conversion + 開 LINE */
+    var contactBtn = document.getElementById('contact-us-btn');
+    if (contactBtn) {
+      contactBtn.addEventListener('click', function () {
+        sendEvt('contact_us_click', {
+          location: 'contact_us_btn',
+          channel: 'LINE',
+          page: pagePath
+        });
+
+        try {
+          gtag('event', 'conversion', {
+            'send_to': 'AW-11479306375/7givCKPT8vMaEIeh4eEq',
+            'value': 1200.0,
+            'currency': 'TWD'
+          });
+        } catch (e) {}
+
+        setTimeout(function () {
+          window.open('https://line.me/ti/p/mJaxGT7we-', '_blank');
+        }, 200);
+      });
+    }
+
+    /* 3) 所有指向同一個 LINE 的連結：也送 conversion（避免漏） */
+    var lineLinks = document.querySelectorAll('a[href*="line.me/ti/p/mJaxGT7we-"]');
+    lineLinks.forEach(function (a) {
+      a.addEventListener('click', function () {
+        try {
+          gtag('event', 'conversion', {
+            'send_to': 'AW-11479306375/7givCKPT8vMaEIeh4eEq',
+            'value': 1200.0,
+            'currency': 'TWD'
+          });
+        } catch (e) {}
+      });
+    });
+
+    /* 4) scroll depth 90% */
+    var scrollTracked = false;
+    window.addEventListener('scroll', function () {
+      if (scrollTracked) return;
+      var doc = document.documentElement;
+      var scrolled = (window.scrollY + window.innerHeight) / doc.scrollHeight;
+      if (scrolled >= 0.9) {
+        scrollTracked = true;
+        sendEvt('scroll_depth', {
+          percent: 90,
+          page: pagePath
+        });
+      }
+    });
+
+    /* 5) outbound_click：案例外部連結（排除 LINE） */
+    var outboundLinks = document.querySelectorAll('a[target="_blank"]:not([href*="line.me/ti/p/mJaxGT7we-"])');
+    outboundLinks.forEach(function (a) {
+      a.addEventListener('click', function () {
+        sendEvt('outbound_click', {
+          url: a.href,
+          page: pagePath
+        });
+      });
+    });
+
+    /* 6) video_engaged：點影片區一次就記 */
+    var videoWrap = document.querySelector('[data-video="aeo-intro"]');
+    if (videoWrap) {
+      var videoSent = false;
+      videoWrap.addEventListener('click', function () {
+        if (videoSent) return;
+        videoSent = true;
+        sendEvt('video_engaged', {
+          label: 'aeo_intro',
+          method: 'click',
+          page: pagePath
+        });
+      });
+    }
+  });
+</script>
+
 </body>
 </html>
