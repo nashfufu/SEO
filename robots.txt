@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://seo-22p.pages.dev/sitemap.xml
